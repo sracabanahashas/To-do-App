@@ -1,3 +1,7 @@
 body {
     background-color: rebeccapurple;
 }
+
+.card {
+    border: 1px dotted hotpink;
+}

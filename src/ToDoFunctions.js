@@ -1,15 +1,16 @@
 export const test = "Sup";
 
-export function ToDoController() {
+export const ToDoController = (function () {
 
-    const ToDoItem = class {
-        constructor(title, description, dueDate, priority) {
-            this.title = title;
-            this.description = description;
-            this.dueDate = dueDate;
-            this.priority = priority;
+    function createToDoItem(title, description, dueDate, priority) {
+        return {
+            title,
+            description,
+            dueDate,
+            priority
         }
-
     } 
 
-}
+
+
+})();
