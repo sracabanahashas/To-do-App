@@ -3,30 +3,28 @@ export const test = "Sup";
 //functions: create, edit, delete todo items; create, read, edit projects
 export const ToDoController = (function () {
 
-    let toDoItem;
+    let currentToDoItem;
+    let projects;
     
     function getToDoItem() {
-        return toDoItem;
+        return currentToDoItem;
     }
 
-    function createToDoItem(title, description, dueDate, priority, project) {
-        return {
-            title,
-            description,
-            dueDate,
-            priority,
-            project
-        }
-    } 
+    function ToDoItem(title, description, dueDate, priority, project) {
+        this.title = title;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
+        this.project = project;
+    }
 
-    function addToDoItem() {
-        toDoItem = createToDoItem()
+    function addToDoItem(title, description, dueDate, priority, project) {
+        new ToDoItem(title, description, dueDate, priority, project)
     }
 
 
 
     return {
-        createToDoItem,
         getToDoItem,
         addToDoItem,
     }
@@ -37,7 +35,10 @@ export const domController = (function () {
 
     function renderToDoItem(todo) {
 
-        let toDoItem = 
+        console.log(todo);
     }
 
+    return {
+        renderToDoItem
+    }
 })();
