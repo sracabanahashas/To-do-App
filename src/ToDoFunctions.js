@@ -10,6 +10,7 @@ export const ToDoController = (function () {
         return currentToDoItem;
     }
 
+    /* 
     function ToDoItem(title, description, dueDate, priority, project) {
         this.title = title;
         this.description = description;
@@ -17,14 +18,26 @@ export const ToDoController = (function () {
         this.priority = priority;
         this.project = project;
     }
+    */
+
+    function createToDoItem(title, description, dueDate, priority, project) {
+        return {
+            title,
+            description,
+            dueDate,
+            priority,
+            project
+        }
+    }
 
     function addToDoItem(title, description, dueDate, priority, project) {
-        new ToDoItem(title, description, dueDate, priority, project)
+        createToDoItem(title, description, dueDate, priority, project)
     }
 
 
 
     return {
+        createToDoItem,
         getToDoItem,
         addToDoItem,
     }
