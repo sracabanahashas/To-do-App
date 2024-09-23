@@ -4,21 +4,11 @@ export const test = "Sup";
 export const ToDoController = (function () {
 
     let currentToDoItem;
-    let projects;
+    let projects = [];
     
     function getToDoItem() {
         return currentToDoItem;
     }
-
-    /* 
-    function ToDoItem(title, description, dueDate, priority, project) {
-        this.title = title;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.priority = priority;
-        this.project = project;
-    }
-    */
 
     function createToDoItem(title, description, dueDate, priority, project) {
         return {
@@ -31,7 +21,13 @@ export const ToDoController = (function () {
     }
 
     function addToDoItem(title, description, dueDate, priority, project) {
-        createToDoItem(title, description, dueDate, priority, project)
+        const newToDoItem = createToDoItem(title, description, dueDate, priority, project)
+        console.log(newToDoItem.title);
+        console.log(newToDoItem.project);
+        const newProject = [];
+        projects.push(newProject);
+        newProject.push(newToDoItem);
+        console.log(projects);
     }
 
 
