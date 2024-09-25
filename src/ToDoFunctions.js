@@ -28,6 +28,7 @@ export const ToDoController = (function () {
         projects.push(newProject);
         newProject.push(newToDoItem);
         console.log(projects);
+        currentToDoItem = newToDoItem;
     }
 
 
@@ -40,11 +41,38 @@ export const ToDoController = (function () {
 
 })();
 
-export const domController = (function () {
+export const DomController = (function () {
 
-    function renderToDoItem(todo) {
 
-        console.log(todo);
+    function renderToDoItem(currentToDoItem) {
+        currentToDoItem = ToDoController.getToDoItem();
+        console.log(currentToDoItem);
+        console.log(currentToDoItem.title);
+
+        const container = document.querySelector('.container');
+        const card = document.createElement('div');
+        container.appendChild(card);
+        card.classList.add('card');
+
+        const title = document.createElement('p');
+        card.appendChild(title);
+        title.textContent = currentToDoItem.title;
+
+        const description = document.createElement('p');
+        card.appendChild(description);
+        description.textContent = currentToDoItem.description;
+
+        const dueDate = document.createElement('p');
+        card.appendChild(dueDate);
+        dueDate.textContent = currentToDoItem.dueDate;
+
+        const priority = document.createElement('p');
+        card.appendChild(priority);
+        priority.textContent = currentToDoItem.priority;
+
+        const project = document.createElement('p');
+        card.appendChild(project);
+        project.textContent = currentToDoItem.project;
     }
 
     return {
