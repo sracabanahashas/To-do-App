@@ -31,7 +31,7 @@ export const ToDoController = (function () {
         currentToDoItem = newToDoItem;
     }
 
-
+    
 
     return {
         createToDoItem,
@@ -75,7 +75,14 @@ export const DomController = (function () {
         project.textContent = currentToDoItem.project;
     }
 
-    return {
-        renderToDoItem
+    function createNewItemBtn() {
+        createBtn = document.querySelector('.createBtn');
+        createBtn.addEventListener('click', )
     }
+
+    return {
+        renderToDoItem,
+        createNewItemBtn
+    }
+
 })();
