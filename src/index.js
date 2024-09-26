@@ -7,4 +7,6 @@ console.log(DomController);
 
 ToDoController.addToDoItem("Go to bed", "Bedtime is 10pm", "Every day", "High", "Health");
 
-DomController.renderToDoItem()
+DomController.renderToDoItem();
+
+DomController.createNewItemBtn();

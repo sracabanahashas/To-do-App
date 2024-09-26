@@ -76,9 +76,14 @@ export const DomController = (function () {
     }
 
     function createNewItemBtn() {
-        createBtn = document.querySelector('.createBtn');
-        createBtn.addEventListener('click', )
-    }
+        const createBtn = document.querySelector('.createBtn');
+        const modal = document.querySelector('.modal');
+        createBtn.addEventListener('click', () => {
+            modal.showModal();
+            })    
+        }
+
+        
 
     return {
         renderToDoItem,
