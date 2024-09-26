@@ -78,12 +78,32 @@ export const DomController = (function () {
     function createNewItemBtn() {
         const createBtn = document.querySelector('.createBtn');
         const modal = document.querySelector('.modal');
+        const form = document.querySelector('.card-form');
+        const titleField = form.elements['title'];
+        const descriptionField = form.elements['description'];
+        const dueDateField = form.elements['dueDate'];
+        const priorityField = form.elements['priority'];
+        const projectField = form.elements['project'];
+
         createBtn.addEventListener('click', () => {
             modal.showModal();
             })    
-        }
 
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();    
+
+            ToDoController.addToDoItem(titleField.value, descriptionField.value, dueDateField.value, 
+            priorityField.value, projectField.value);
+
+            renderToDoItem();
+
+            modal.close();
         
+            
+        })
+    }
+
+       
 
     return {
         renderToDoItem,
