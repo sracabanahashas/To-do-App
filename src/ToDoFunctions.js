@@ -27,7 +27,7 @@ export const ToDoController = (function () {
         const newToDoItem = createToDoItem(title, description, dueDate, priority, project)
         console.log(newToDoItem.title);
         console.log(newToDoItem.project);
-
+        
         const newProject = [];
         projects.push(newProject);
         newProject.push(newToDoItem);
@@ -36,18 +36,24 @@ export const ToDoController = (function () {
         currentToDoItem = newToDoItem;
     }
 
-    function createProject(toDoItem, projectName) {
-        const projectName = 
-    }
+   /* function createProject(projectName) {
+        const project = projectName;
+        project = [];
+        // console.log(projectName);
+        console.log(projectName);
+        return projectName;
+    }*/
 
-    function addProject(projectName) {
-
+    function addProject(newProject) {
+        projects[newProject] = [];
+        console.log(projects);
     }
 
     return {
         createToDoItem,
         getToDoItem,
         addToDoItem,
+        addProject
     }
 
 })();
