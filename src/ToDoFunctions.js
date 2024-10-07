@@ -28,10 +28,15 @@ export const ToDoController = (function () {
         console.log(newToDoItem.title);
         console.log(newToDoItem.project);
         
+        /*
         const newProject = [];
         projects.push(newProject);
         newProject.push(newToDoItem);
         console.log(projects);
+        */
+
+        addProject(project)
+        
 
         currentToDoItem = newToDoItem;
     }
