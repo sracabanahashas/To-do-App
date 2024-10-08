@@ -11,4 +11,4 @@ DomController.renderToDoItem();
 
 DomController.createNewItemBtn();
 
-ToDoController.addProject('Health');
+DomController.createNewProjectBtn();

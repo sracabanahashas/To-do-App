@@ -5,6 +5,7 @@ export const ToDoController = (function () {
 
     let currentToDoItem;
     let projects = [];
+    let currentProject;
     
     // return the current To Do item
     function getToDoItem() {
@@ -35,30 +36,35 @@ export const ToDoController = (function () {
         console.log(projects);
         */
 
-        addProject(project)
         
+        addProject(project)
+
+
 
         currentToDoItem = newToDoItem;
     }
 
-   /* function createProject(projectName) {
-        const project = projectName;
-        project = [];
-        // console.log(projectName);
-        console.log(projectName);
-        return projectName;
-    }*/
-
     function addProject(newProject) {
         projects[newProject] = [];
+        currentProject = projects[newProject];
         console.log(projects);
+        console.log(currentProject);
+    }
+
+    function createNewProject() {
+        let newProjectTitle = prompt("What's your project called?", "e.g. Health");
+        projects.push(newProjectTitle);
+        console.log(newProjectTitle);
+        console.log(projects);
+
     }
 
     return {
         createToDoItem,
         getToDoItem,
         addToDoItem,
-        addProject
+        addProject,
+        createNewProject
     }
 
 })();
@@ -126,11 +132,21 @@ export const DomController = (function () {
         })
     }
 
+    function createNewProjectBtn() {
+
+        const createProjectBtn = document.querySelector('.createNewProjectBtn')
+
+        createProjectBtn.addEventListener('click', () => {
+            ToDoController.createNewProject()
+        })
+
+    }
        
 
     return {
         renderToDoItem,
-        createNewItemBtn
+        createNewItemBtn,
+        createNewProjectBtn
     }
 
 })();
