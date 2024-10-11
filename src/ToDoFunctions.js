@@ -1,3 +1,4 @@
+
 export const test = "Sup";
 
 //functions: create, edit, delete To Do items; create, read, edit projects
@@ -10,6 +11,14 @@ export const ToDoController = (function () {
     // return the current To Do item
     function getToDoItem() {
         return currentToDoItem;
+    }
+
+    function getProjects() {
+        return projects;
+    }
+
+    function getCurrentProject() {
+        return currentProject;
     }
 
     // create a new To Do item object
@@ -56,6 +65,7 @@ export const ToDoController = (function () {
         projects.push(newProjectTitle);
         console.log(newProjectTitle);
         console.log(projects);
+        currentProject = newProjectTitle;
 
     }
 
@@ -64,7 +74,8 @@ export const ToDoController = (function () {
         getToDoItem,
         addToDoItem,
         addProject,
-        createNewProject
+        createNewProject,
+        getCurrentProject
     }
 
 })();
@@ -77,7 +88,7 @@ export const DomController = (function () {
         console.log(currentToDoItem);
         console.log(currentToDoItem.title);
 
-        const container = document.querySelector('.container');
+        const container = document.querySelector('.main-display');
         const card = document.createElement('div');
         container.appendChild(card);
         card.classList.add('card');
@@ -101,6 +112,17 @@ export const DomController = (function () {
         const project = document.createElement('p');
         card.appendChild(project);
         project.textContent = currentToDoItem.project;
+    }
+
+    function renderProject() {
+        const currentProject = ToDoController.getCurrentProject();
+        const sidebar = document.querySelector('.sidebar-display');
+        const projectButton = document.createElement('button');
+        projectButton.textContent = currentProject;
+
+        sidebar.appendChild(projectButton);
+        console.log(currentProject);
+
     }
     
     // add modal display, form functionality, creation and rendering to "Create New To-Do Item" button
@@ -138,6 +160,9 @@ export const DomController = (function () {
 
         createProjectBtn.addEventListener('click', () => {
             ToDoController.createNewProject()
+
+            renderProject();
+
         })
 
     }
