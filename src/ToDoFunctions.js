@@ -49,9 +49,9 @@ export const ToDoController = (function () {
         console.log(projects);
         */
 
-        
-        addProject(project)
-
+        changeCurrentProject(project);
+        console.log(currentProject);
+       // currentProject.push(newToDoItem);
 
 
         currentToDoItem = newToDoItem;
@@ -129,6 +129,8 @@ export const DomController = (function () {
         console.log(currentProject);
 
         projectButton.addEventListener('click', () => {
+            const currentProject = projectButton.textContent;
+            console.log(currentProject);
             ToDoController.changeCurrentProject(currentProject);
             console.log(ToDoController.getCurrentProject());
         }
