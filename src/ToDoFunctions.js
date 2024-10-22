@@ -6,7 +6,9 @@ export const ToDoController = (function () {
 
     let currentToDoItem;
     let projects = [];
-    let currentProject;
+    let defaultProject = 'Default Project';
+    projects[defaultProject] = [];
+    let currentProject = defaultProject;
     
     // return the current To Do item
     function getToDoItem() {
@@ -14,10 +16,12 @@ export const ToDoController = (function () {
     }
 
     function getProjects() {
+        console.log(projects);
         return projects;
     }
 
     function getCurrentProject() {
+        console.log(projects[currentProject]);
         return currentProject;
     }
 
@@ -42,6 +46,7 @@ export const ToDoController = (function () {
         console.log(newToDoItem.title);
         console.log(newToDoItem.project);
         
+
         /*
         const newProject = [];
         projects.push(newProject);
@@ -49,9 +54,10 @@ export const ToDoController = (function () {
         console.log(projects);
         */
 
-        changeCurrentProject(project);
+       /* changeCurrentProject(project);
         console.log(currentProject);
-       // currentProject.push(newToDoItem);
+        */
+       projects[currentProject].push(newToDoItem);
 
 
         currentToDoItem = newToDoItem;
@@ -80,7 +86,8 @@ export const ToDoController = (function () {
         addProject,
         createNewProject,
         getCurrentProject,
-        changeCurrentProject
+        changeCurrentProject,
+        getProjects
     }
 
 })();
