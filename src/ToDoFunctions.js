@@ -26,7 +26,8 @@ export const ToDoController = (function () {
     }
 
     function changeCurrentProject(projectTitle) {
-        currentProject = projects[projectTitle];
+        currentProject = projectTitle;
+        console.log(currentProject);
     }
 
     // create a new To Do item object
@@ -75,7 +76,7 @@ export const ToDoController = (function () {
         projects[newProjectTitle] = [];
         console.log(newProjectTitle);
         console.log(projects);
-        currentProject = newProjectTitle;
+        changeCurrentProject(newProjectTitle);
 
     }
 
