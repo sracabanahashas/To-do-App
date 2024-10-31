@@ -25,6 +25,10 @@ export const ToDoController = (function () {
         return currentProject;
     }
 
+    function getCurrentProjectArray() {
+        return projects[currentProject];
+    }
+
     function changeCurrentProject(projectTitle) {
         currentProject = projectTitle;
         console.log(currentProject);
@@ -71,8 +75,14 @@ export const ToDoController = (function () {
         console.log(currentProject);
     }
 
-    function createNewProject() {
-        let newProjectTitle = prompt("What's your project called?", "e.g. Health");
+    function createNewProject(projectTitle) {
+        let newProjectTitle;
+        if (projectTitle == null) {
+             newProjectTitle = prompt("What's your project called?", "e.g. Health");
+        }
+        else {
+             newProjectTitle = projectTitle
+        }
         projects[newProjectTitle] = [];
         console.log(newProjectTitle);
         console.log(projects);
@@ -87,6 +97,7 @@ export const ToDoController = (function () {
         addProject,
         createNewProject,
         getCurrentProject,
+        getCurrentProjectArray,
         changeCurrentProject,
         getProjects
     }
@@ -127,6 +138,17 @@ export const DomController = (function () {
         project.textContent = currentToDoItem.project;
     }
 
+    function renderProjectToDoItems() {
+        console.log("render project");
+        let projectArray = ToDoController.getCurrentProjectArray();
+        console.log(projectArray);
+        for (const toDoItem of projectArray) {
+            console.log(toDoItem);
+        }
+
+
+    }
+
     function renderProject() {
         const currentProject = ToDoController.getCurrentProject();
         const sidebar = document.querySelector('.sidebar-display');
@@ -141,6 +163,7 @@ export const DomController = (function () {
             console.log(currentProject);
             ToDoController.changeCurrentProject(currentProject);
             console.log(ToDoController.getCurrentProject());
+            renderProjectToDoItems();
         }
         )
 
@@ -175,6 +198,7 @@ export const DomController = (function () {
         })
     }
 
+    // add new project creation and rendering to "Create New Project" button
     function createNewProjectBtn() {
 
         const createProjectBtn = document.querySelector('.createNewProjectBtn')
@@ -184,6 +208,8 @@ export const DomController = (function () {
 
             renderProject();
 
+            renderProjectToDoItems(ToDoController.getCurrentProject());
+
         })
 
     }
@@ -191,6 +217,7 @@ export const DomController = (function () {
 
     return {
         renderToDoItem,
+        renderProject,
         createNewItemBtn,
         createNewProjectBtn
     }
