@@ -112,7 +112,7 @@ export const DomController = (function () {
         console.log(currentToDoItem);
         console.log(currentToDoItem.title);
 
-        const container = document.querySelector('.main-display');
+        const container = document.querySelector('.cards-display');
         const card = document.createElement('div');
         container.appendChild(card);
         card.classList.add('card');
@@ -143,9 +143,21 @@ export const DomController = (function () {
         let projectArray = ToDoController.getCurrentProjectArray();
         console.log(projectArray);
         for (const toDoItem of projectArray) {
+            renderToDoItem();
             console.log(toDoItem);
         }
 
+
+    }
+
+    function deleteProjectTodoItemCards() {
+        const container = document.querySelector('.cards-display');
+        const card = container.querySelectorAll('.card');
+        console.log(card);
+
+        while (container.hasChildNodes()) {
+            container.removeChild(container.firstChild);
+        }
 
     }
 
@@ -163,6 +175,7 @@ export const DomController = (function () {
             console.log(currentProject);
             ToDoController.changeCurrentProject(currentProject);
             console.log(ToDoController.getCurrentProject());
+            deleteProjectTodoItemCards();
             renderProjectToDoItems();
         }
         )
@@ -219,7 +232,8 @@ export const DomController = (function () {
         renderToDoItem,
         renderProject,
         createNewItemBtn,
-        createNewProjectBtn
+        createNewProjectBtn,
+        deleteProjectTodoItemCards
     }
 
 })();
