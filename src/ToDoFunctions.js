@@ -15,6 +15,13 @@ export const ToDoController = (function () {
         return currentToDoItem;
     }
 
+    function changeCurrentToDoItem(toDoItem) {
+        console.log(currentToDoItem);
+        currentToDoItem = toDoItem;
+        console.log(currentToDoItem);
+        return currentToDoItem;
+    }
+
     function getProjects() {
         console.log(projects);
         return projects;
@@ -93,6 +100,7 @@ export const ToDoController = (function () {
     return {
         createToDoItem,
         getToDoItem,
+        changeCurrentToDoItem,
         addToDoItem,
         addProject,
         createNewProject,
@@ -143,6 +151,7 @@ export const DomController = (function () {
         let projectArray = ToDoController.getCurrentProjectArray();
         console.log(projectArray);
         for (const toDoItem of projectArray) {
+            ToDoController.changeCurrentToDoItem(toDoItem);
             renderToDoItem();
             console.log(toDoItem);
         }
