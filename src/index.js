@@ -13,6 +13,8 @@ DomController.createNewItemBtn();
 
 DomController.createNewProjectBtn();
 
+DomController.deleteProjectBtn();
+
 ToDoController.getProjects();
 
 ToDoController.getCurrentProject();

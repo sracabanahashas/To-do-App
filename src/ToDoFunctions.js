@@ -5,7 +5,7 @@ export const test = "Sup";
 export const ToDoController = (function () {
 
     let currentToDoItem;
-    let projects = [];
+    let projects = {};
     let defaultProject = 'Default Project';
     projects[defaultProject] = [];
     let currentProject = defaultProject;
@@ -76,7 +76,7 @@ export const ToDoController = (function () {
     }
 
     function addProject(newProject) {
-        projects[newProject] = [];
+        projects[newProject] = {};
         currentProject = projects[newProject];
         console.log(projects);
         console.log(currentProject);
@@ -97,6 +97,16 @@ export const ToDoController = (function () {
 
     }
 
+    function deleteProject(projectTitle) {
+        console.log('delete project');
+        console.log(projects);
+        console.log(projectTitle);
+        let project = projectTitle;
+        console.log(project);
+        console.log(projects.project);
+        delete projects[project];
+    }
+
     return {
         createToDoItem,
         getToDoItem,
@@ -107,7 +117,8 @@ export const ToDoController = (function () {
         getCurrentProject,
         getCurrentProjectArray,
         changeCurrentProject,
-        getProjects
+        getProjects,
+        deleteProject
     }
 
 })();
@@ -235,6 +246,19 @@ export const DomController = (function () {
         })
 
     }
+
+    function deleteProjectBtn() {
+        let deletion = ToDoController.getCurrentProject();
+        const deleteProjectBtn = document.querySelector('.deleteProjectBtn');
+
+        deleteProjectBtn.addEventListener('click', () => {
+            deletion = ToDoController.getCurrentProject();
+            console.log(deletion);
+            ToDoController.deleteProject(deletion)
+            console.log(ToDoController.getProjects());
+        })
+
+    }
        
 
     return {
@@ -242,7 +266,8 @@ export const DomController = (function () {
         renderProject,
         createNewItemBtn,
         createNewProjectBtn,
-        deleteProjectTodoItemCards
+        deleteProjectTodoItemCards,
+        deleteProjectBtn
     }
 
 })();
