@@ -178,6 +178,17 @@ export const DomController = (function () {
         while (container.hasChildNodes()) {
             container.removeChild(container.firstChild);
         }
+    }
+
+    function deleteProjectButton() {
+        const sidebar = document.querySelector('.sidebar-display');
+        const currentProject = ToDoController.getCurrentProject();
+        const projectButtons = sidebar.querySelectorAll('button')
+        projectButtons.forEach((projectButton) => {
+            if (projectButton.textContent == currentProject) {
+                sidebar.removeChild(projectButton)
+            }
+        });
 
     }
 
@@ -256,6 +267,8 @@ export const DomController = (function () {
             console.log(deletion);
             ToDoController.deleteProject(deletion)
             console.log(ToDoController.getProjects());
+            deleteProjectTodoItemCards();
+            deleteProjectButton();
         })
 
     }
