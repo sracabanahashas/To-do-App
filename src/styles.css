@@ -5,6 +5,7 @@
 
 body {
     background-color: rebeccapurple;
+    margin: 2rem;
     
 }
 
@@ -16,7 +17,7 @@ body {
     display: grid;
     max-height: 100vh;
     grid-template-columns: 1fr 3fr;
-    gap: 10px;
+    gap: 2rem;
 }
 
 .sidebar-display {

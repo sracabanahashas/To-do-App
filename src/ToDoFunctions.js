@@ -107,6 +107,18 @@ export const ToDoController = (function () {
         delete projects[project];
     }
 
+    function deleteTodo(currentProject, todoIndex) {
+        const project = ToDoController.getCurrentProject();
+        const currentToDoItem = ToDoController.getToDoItem();
+        console.log('delete todo');
+        console.log(project);
+        console.log(currentToDoItem)
+        console.log(currentProject)
+        console.log(todoIndex);
+        console.log(currentProject.splice(todoIndex, 1))
+        console.log(currentProject);
+    }
+
     return {
         createToDoItem,
         getToDoItem,
@@ -118,7 +130,8 @@ export const ToDoController = (function () {
         getCurrentProjectArray,
         changeCurrentProject,
         getProjects,
-        deleteProject
+        deleteProject,
+        deleteTodo
     }
 
 })();
@@ -128,6 +141,10 @@ export const DomController = (function () {
     // render the current To Do item to the DOM
     function renderToDoItem(currentToDoItem) {
         currentToDoItem = ToDoController.getToDoItem();
+        const projects = ToDoController.getProjects();
+        const currentProject = ToDoController.getCurrentProject();
+
+        console.log(projects[currentProject]);
         console.log(currentToDoItem);
         console.log(currentToDoItem.title);
 
@@ -135,6 +152,9 @@ export const DomController = (function () {
         const card = document.createElement('div');
         container.appendChild(card);
         card.classList.add('card');
+        card.setAttribute('index', projects[currentProject].indexOf(currentToDoItem))
+        console.log(projects[currentProject].indexOf(currentToDoItem))
+
 
         const title = document.createElement('p');
         card.appendChild(title);
@@ -155,6 +175,32 @@ export const DomController = (function () {
         const project = document.createElement('p');
         card.appendChild(project);
         project.textContent = currentToDoItem.project;
+
+        const editTodoBtn = document.createElement('button');
+        card.appendChild(editTodoBtn);
+        editTodoBtn.textContent = 'Edit';
+        editTodoBtn.addEventListener('click', editTodo(currentToDoItem));
+
+        const deleteTodoBtn = document.createElement('button');
+        card.appendChild(deleteTodoBtn);
+        deleteTodoBtn.textContent = 'Delete';
+        deleteTodoBtn.addEventListener('click', () => {
+                const toDoIndex = (card.getAttribute("index"));
+                console.log(toDoIndex);
+                ToDoController.deleteTodo(projects[currentProject], toDoIndex);
+                deleteProjectTodoItemCards();
+                renderProjectToDoItems();
+            })
+    }
+
+    function editTodo(toDoItem) {
+
+    }
+
+    
+
+    function deleteTodoCard() {
+
     }
 
     function renderProjectToDoItems() {

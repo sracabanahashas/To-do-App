@@ -25,12 +25,12 @@ ToDoController.addToDoItem("Go to bed", "Bedtime is 10pm", "Every day", "High", 
 
 ToDoController.createNewProject("Balling Out");
 DomController.renderProject();
-ToDoController.addToDoItem("Go to bed", "Bedtime is 10pm", "Every day", "High", "Health");
-ToDoController.addToDoItem("Go to bed", "Bedtime is 10pm", "Every day", "High", "Health");
+ToDoController.addToDoItem("Coding Practice", "The Odin Project", "Every day", "High", "Balling Out");
+ToDoController.addToDoItem("Applying for Jobs", "Remote/Hybrid Only", "W/Th/F", "High", "Balling Out");
 
 
 ToDoController.createNewProject("Player Shit");
 DomController.renderProject();
-ToDoController.addToDoItem("Go to bed", "Bedtime is 10pm", "Every day", "High", "Health");
-ToDoController.addToDoItem("Go to bed", "Bedtime is 10pm", "Every day", "High", "Health");
-ToDoController.addToDoItem("Go to bed", "Bedtime is 10pm", "Every day", "High", "Health");
+ToDoController.addToDoItem("Sex", "Beautiful women", "Every other day", "High", "Player Shit");
+ToDoController.addToDoItem("Music", "In the studio", "Every day", "High", "Player Shit");
+ToDoController.addToDoItem("Partying", "With my friends", "Weekends", "High", "Player Shit");
