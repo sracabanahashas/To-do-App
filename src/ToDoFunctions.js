@@ -58,19 +58,7 @@ export const ToDoController = (function () {
         console.log(newToDoItem.title);
         console.log(newToDoItem.project);
         
-
-        /*
-        const newProject = [];
-        projects.push(newProject);
-        newProject.push(newToDoItem);
-        console.log(projects);
-        */
-
-       /* changeCurrentProject(project);
-        console.log(currentProject);
-        */
-       projects[currentProject].push(newToDoItem);
-
+        projects[currentProject].push(newToDoItem);
 
         currentToDoItem = newToDoItem;
     }
@@ -95,6 +83,30 @@ export const ToDoController = (function () {
         console.log(projects);
         changeCurrentProject(newProjectTitle);
 
+    }
+
+    function getToDoItemToEdit(card) {
+        const toDoIndex = card.getAttribute("index");
+        let project = getCurrentProjectArray();
+        let toDoItemToEdit = project[toDoIndex]
+        console.log(toDoIndex);
+        console.log(toDoItemToEdit);
+        console.log(toDoItemToEdit.description);
+        return toDoItemToEdit;
+    }
+
+    function updateTodo(toDoItem, title, description, dueDate, priority, project) {
+        const editedToDoItem = createToDoItem(title, description, dueDate, priority, project);
+        console.log(editedToDoItem);
+        toDoItem = editedToDoItem;
+        console.log(toDoItem);
+        return toDoItem;
+    }
+
+    function updateProjectArray(project, indexToEdit, updatedTodoItem) {
+        projects[project][indexToEdit] = updatedTodoItem;
+        console.log(project);
+        return project[indexToEdit];
     }
 
     function deleteProject(projectTitle) {
@@ -130,6 +142,9 @@ export const ToDoController = (function () {
         getCurrentProjectArray,
         changeCurrentProject,
         getProjects,
+        getToDoItemToEdit,
+        updateTodo,
+        updateProjectArray,
         deleteProject,
         deleteTodo
     }
@@ -179,7 +194,12 @@ export const DomController = (function () {
         const editTodoBtn = document.createElement('button');
         card.appendChild(editTodoBtn);
         editTodoBtn.textContent = 'Edit';
-        editTodoBtn.addEventListener('click', editTodo(currentToDoItem));
+        editTodoBtn.addEventListener('click', () => {
+            editToDoItemBtn(card, currentProject);
+            
+            
+        });
+    
 
         const deleteTodoBtn = document.createElement('button');
         card.appendChild(deleteTodoBtn);
@@ -193,15 +213,40 @@ export const DomController = (function () {
             })
     }
 
-    function editTodo(toDoItem) {
+    function editToDoItemBtn(cardNode, projectArray) {
+        const modal = document.querySelector('.edit-modal');
+        const form = document.querySelector('.edit-form');
+        const titleField = form.elements['title'];
+        const descriptionField = form.elements['description'];
+        const dueDateField = form.elements['dueDate'];
+        const priorityField = form.elements['priority'];
+        const projectField = form.elements['project'];
+        let toDoItemToEdit = ToDoController.getToDoItemToEdit(cardNode)
 
+        modal.showModal();
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();    
+
+            
+            toDoItemToEdit = ToDoController.updateTodo(toDoItemToEdit, titleField.value, descriptionField.value, dueDateField.value, 
+            priorityField.value, projectField.value);
+
+            console.log(toDoItemToEdit);
+            const editedToDoItem = toDoItemToEdit;
+            
+            const toDoIndex = cardNode.getAttribute("index");
+
+            ToDoController.updateProjectArray(projectArray, toDoIndex, editedToDoItem)
+
+            renderToDoItem();
+
+            modal.close();
+        
+            
+        })
     }
-
     
-
-    function deleteTodoCard() {
-
-    }
 
     function renderProjectToDoItems() {
         console.log("render project");
@@ -288,6 +333,8 @@ export const DomController = (function () {
         })
     }
 
+    
+
     // add new project creation and rendering to "Create New Project" button
     function createNewProjectBtn() {
 
@@ -325,6 +372,7 @@ export const DomController = (function () {
         renderProject,
         createNewItemBtn,
         createNewProjectBtn,
+        editToDoItemBtn,
         deleteProjectTodoItemCards,
         deleteProjectBtn
     }

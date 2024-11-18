@@ -19,6 +19,8 @@ ToDoController.getProjects();
 
 ToDoController.getCurrentProject();
 
+DomController.renderProject();
+
 ToDoController.createNewProject("Health");
 DomController.renderProject();
 ToDoController.addToDoItem("Go to bed", "Bedtime is 10pm", "Every day", "High", "Health");
