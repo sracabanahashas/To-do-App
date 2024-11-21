@@ -239,8 +239,9 @@ export const DomController = (function () {
 
             ToDoController.updateProjectArray(projectArray, toDoIndex, editedToDoItem)
 
-            renderToDoItem();
-
+            deleteProjectTodoItemCards();
+            renderProjectToDoItems();
+            
             modal.close();
         
             
