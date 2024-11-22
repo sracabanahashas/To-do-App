@@ -131,6 +131,16 @@ export const ToDoController = (function () {
         console.log(currentProject);
     }
 
+    function storeProjects() {
+        let projects = getProjects();
+        localStorage.setItem('storedProjects', JSON.stringify(projects));
+    }
+
+    function retrieveProjects() {
+        let storedProjects = JSON.parse(localStorage.getItem('storedProjects'));
+        return console.log(storedProjects);
+    }
+
     return {
         createToDoItem,
         getToDoItem,
@@ -146,7 +156,9 @@ export const ToDoController = (function () {
         updateTodo,
         updateProjectArray,
         deleteProject,
-        deleteTodo
+        deleteTodo,
+        storeProjects,
+        retrieveProjects
     }
 
 })();
@@ -241,7 +253,7 @@ export const DomController = (function () {
 
             deleteProjectTodoItemCards();
             renderProjectToDoItems();
-            
+
             modal.close();
         
             

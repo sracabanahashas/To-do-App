@@ -36,3 +36,6 @@ DomController.renderProject();
 ToDoController.addToDoItem("Sex", "Beautiful women", "Every other day", "High", "Player Shit");
 ToDoController.addToDoItem("Music", "In the studio", "Every day", "High", "Player Shit");
 ToDoController.addToDoItem("Partying", "With my friends", "Weekends", "High", "Player Shit");
+
+ToDoController.storeProjects();
+ToDoController.retrieveProjects();
