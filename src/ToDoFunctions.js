@@ -5,7 +5,14 @@ export const test = "Sup";
 export const ToDoController = (function () {
 
     let currentToDoItem;
-    let projects = {};
+    let projects;
+    if (!localStorage.getItem('storedProjects')) {
+        projects = {};
+        console.log(projects);
+    } else { 
+        projects = setRetrievedProjects();
+        console.log('projects set from storage');
+    }
     let defaultProject = 'Default Project';
     projects[defaultProject] = [];
     let currentProject = defaultProject;
@@ -59,6 +66,7 @@ export const ToDoController = (function () {
         console.log(newToDoItem.project);
         
         projects[currentProject].push(newToDoItem);
+        storeProjects();
 
         currentToDoItem = newToDoItem;
     }
@@ -78,9 +86,16 @@ export const ToDoController = (function () {
         else {
              newProjectTitle = projectTitle
         }
+
+        if (!localStorage.getItem('storedProjects')) {
+            
+        }
+
         projects[newProjectTitle] = [];
+        console.log('Creating empty project with title ' + newProjectTitle);
         console.log(newProjectTitle);
         console.log(projects);
+        storeProjects();
         changeCurrentProject(newProjectTitle);
 
     }
@@ -117,6 +132,7 @@ export const ToDoController = (function () {
         console.log(project);
         console.log(projects.project);
         delete projects[project];
+        storeProjects();
     }
 
     function deleteTodo(currentProject, todoIndex) {
@@ -129,6 +145,7 @@ export const ToDoController = (function () {
         console.log(todoIndex);
         console.log(currentProject.splice(todoIndex, 1))
         console.log(currentProject);
+        storeProjects();
     }
 
     function storeProjects() {
@@ -138,7 +155,17 @@ export const ToDoController = (function () {
 
     function retrieveProjects() {
         let storedProjects = JSON.parse(localStorage.getItem('storedProjects'));
-        return console.log(storedProjects);
+        console.log(storedProjects)
+        return storedProjects;
+    }
+
+    function setRetrievedProjects() {
+       // let retrievedProjects = retrieveProjects();
+        //projects = retrievedProjects;
+        projects = JSON.parse(localStorage.getItem('storedProjects'));
+        console.log(projects);
+        return projects;
+
     }
 
     return {
@@ -158,7 +185,8 @@ export const ToDoController = (function () {
         deleteProject,
         deleteTodo,
         storeProjects,
-        retrieveProjects
+        retrieveProjects,
+        setRetrievedProjects,
     }
 
 })();
@@ -264,6 +292,7 @@ export const DomController = (function () {
     function renderProjectToDoItems() {
         console.log("render project");
         let projectArray = ToDoController.getCurrentProjectArray();
+        if (projectArray === undefined) return;
         console.log(projectArray);
         for (const toDoItem of projectArray) {
             ToDoController.changeCurrentToDoItem(toDoItem);
@@ -315,6 +344,16 @@ export const DomController = (function () {
         }
         )
 
+    }
+
+    function renderAllProjects() {
+        let currentProject = ToDoController.getCurrentProject();
+        let projects = ToDoController.getProjects();
+        for (let project of Object.keys(projects)) {
+            ToDoController.changeCurrentProject(project);
+            renderProject();
+            console.log('Rendering ' + project + ' project');
+        }
     }
     
     // add modal display, form functionality, creation and rendering to "Create New To-Do Item" button
@@ -387,7 +426,8 @@ export const DomController = (function () {
         createNewProjectBtn,
         editToDoItemBtn,
         deleteProjectTodoItemCards,
-        deleteProjectBtn
+        deleteProjectBtn,
+        renderAllProjects
     }
 
 })();
