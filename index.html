@@ -6,6 +6,81 @@
     <title>Document</title>
 <script defer src="main.js"></script></head>
 <body>
+    <div class="container">
+
+        <div class="sidebar-display">
+            <h2>Projects</h2>
+        </div>
+
+        <div class="main-display">
+            <button class="createBtn">Create New To-Do Item</button>
+            <button class="createNewProjectBtn">Create New Project</button>
+            <button class="deleteProjectBtn">Delete This Project</button>
+            <div class="cards-display">
+                <div class="card">
+                    <p>title</p>
+                    <p>description</p>
+                    <p>dueDate</p>
+                    <p>priority</p>
+                </div>
+            </div>
+        </div>
+
+        <dialog class="modal">
+            <form action="POST" class="card-form">
+                <div class="card-form-box">
+                    <label for="title">Title:</label>
+                    <input type="text" for="title" id="title">
+                </div>
+                <div class="card-form-box">
+                    <label for="description">Description:</label>
+                    <input type="text" for="description" id="description">
+                </div>
+                <div class="card-form-box">
+                    <label for="dueDate">Due date:</label>
+                    <input type="text" for="dueDate" id="dueDate">
+                </div>
+                <div class="card-form-box">
+                    <label for="priority">Priority:</label>
+                    <input type="text" for="priority" id="priority">
+                </div>
+                <div class="card-form-box">
+                    <label for="project">Project:</label>
+                    <input type="text" for="project" id="project">
+                </div>
+                <button class="submitBtn">Add</button>
+            </form>
+        </dialog>
+
+        <dialog class="edit-modal">
+            <form action="POST" class="edit-form">
+                <div class="card-form-box">
+                    <label for="title">Title:</label>
+                    <input type="text" for="title" id="title">
+                </div>
+                <div class="card-form-box">
+                    <label for="description">Description:</label>
+                    <input type="text" for="description" id="description">
+                </div>
+                <div class="card-form-box">
+                    <label for="dueDate">Due date:</label>
+                    <input type="text" for="dueDate" id="dueDate">
+                </div>
+                <div class="card-form-box">
+                    <label for="priority">Priority:</label>
+                    <input type="text" for="priority" id="priority">
+                </div>
+                <div class="card-form-box">
+                    <label for="project">Project:</label>
+                    <input type="text" for="project" id="project">
+                </div>
+                <button class="submitBtn">Add</button>
+            </form>
+        </dialog>
+
+        <div></div>
+        <div></div>
+    </div>
     
 </body>
 </html>
