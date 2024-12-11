@@ -347,7 +347,6 @@ export const DomController = (function () {
     }
 
     function renderAllProjects() {
-        let currentProject = ToDoController.getCurrentProject();
         let projects = ToDoController.getProjects();
         for (let project of Object.keys(projects)) {
             ToDoController.changeCurrentProject(project);
